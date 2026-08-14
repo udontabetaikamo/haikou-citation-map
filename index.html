@@ -4,506 +4,444 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>閉校・廃校研究の引用マップ</title>
-<meta name="description" content="日本の廃校・学校統廃合研究の引用系譜図。3系統の分岐と2つの共通祖先、空白の帯を1枚に整理。">
+<meta name="description" content="日本の廃校・閉校研究の引用系譜図。6系統・31ノード、2つの共通祖先と、分野をまたぐ橋の不在を1枚に整理。">
 <style>
-*, *::before, *::after { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
-
-  :root {
-    --ground: #F3F4F1;
-    --surface: #FBFBF9;
-    --ink: #1B2430;
-    --ink-2: #5A6470;
-    --ink-3: #8A939C;
-    --rule: #D5D8D2;
-    --edu: #3F6595;
-    --fin: #8C6320;
-    --arch: #24685A;
-    --gap: #8C4A63;
-    --edu-tint: rgba(63, 101, 149, 0.06);
-    --fin-tint: rgba(140, 99, 32, 0.06);
-    --arch-tint: rgba(36, 104, 90, 0.06);
-    --gap-tint: rgba(140, 74, 99, 0.05);
-    --edu-fill: rgba(63, 101, 149, 0.09);
-    --fin-fill: rgba(140, 99, 32, 0.09);
-    --arch-fill: rgba(36, 104, 90, 0.09);
-    --gap-fill: rgba(140, 74, 99, 0.07);
-    --star-fill: rgba(36, 104, 90, 0.19);
-    --box-bg: #FBFBF9;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ground: #13171B;
-      --surface: #1A1F25;
-      --ink: #E7EAE5;
-      --ink-2: #A3ACB4;
-      --ink-3: #78818A;
-      --rule: #2E353C;
-      --edu: #7FA6DB;
-      --fin: #D2A455;
-      --arch: #5BB79E;
-      --gap: #CB8CA5;
-      --edu-tint: rgba(127, 166, 219, 0.07);
-      --fin-tint: rgba(210, 164, 85, 0.07);
-      --arch-tint: rgba(91, 183, 158, 0.07);
-      --gap-tint: rgba(203, 140, 165, 0.06);
-      --edu-fill: rgba(127, 166, 219, 0.13);
-      --fin-fill: rgba(210, 164, 85, 0.13);
-      --arch-fill: rgba(91, 183, 158, 0.13);
-      --gap-fill: rgba(203, 140, 165, 0.11);
-      --star-fill: rgba(91, 183, 158, 0.26);
-      --box-bg: #1A1F25;
-    }
-  }
-  :root[data-theme="light"] {
-    --ground: #F3F4F1;
-    --surface: #FBFBF9;
-    --ink: #1B2430;
-    --ink-2: #5A6470;
-    --ink-3: #8A939C;
-    --rule: #D5D8D2;
-    --edu: #3F6595;
-    --fin: #8C6320;
-    --arch: #24685A;
-    --gap: #8C4A63;
-    --edu-tint: rgba(63, 101, 149, 0.06);
-    --fin-tint: rgba(140, 99, 32, 0.06);
-    --arch-tint: rgba(36, 104, 90, 0.06);
-    --gap-tint: rgba(140, 74, 99, 0.05);
-    --edu-fill: rgba(63, 101, 149, 0.09);
-    --fin-fill: rgba(140, 99, 32, 0.09);
-    --arch-fill: rgba(36, 104, 90, 0.09);
-    --gap-fill: rgba(140, 74, 99, 0.07);
-    --star-fill: rgba(36, 104, 90, 0.19);
-    --box-bg: #FBFBF9;
-  }
-  :root[data-theme="dark"] {
-    --ground: #13171B;
-    --surface: #1A1F25;
-    --ink: #E7EAE5;
-    --ink-2: #A3ACB4;
-    --ink-3: #78818A;
-    --rule: #2E353C;
-    --edu: #7FA6DB;
-    --fin: #D2A455;
-    --arch: #5BB79E;
-    --gap: #CB8CA5;
-    --edu-tint: rgba(127, 166, 219, 0.07);
-    --fin-tint: rgba(210, 164, 85, 0.07);
-    --arch-tint: rgba(91, 183, 158, 0.07);
-    --gap-tint: rgba(203, 140, 165, 0.06);
-    --edu-fill: rgba(127, 166, 219, 0.13);
-    --fin-fill: rgba(210, 164, 85, 0.13);
-    --arch-fill: rgba(91, 183, 158, 0.13);
-    --gap-fill: rgba(203, 140, 165, 0.11);
-    --star-fill: rgba(91, 183, 158, 0.26);
-    --box-bg: #1A1F25;
-  }
-
-  body {
-    background: var(--ground);
-    color: var(--ink);
-    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "Noto Sans JP", system-ui, sans-serif;
-    line-height: 1.85;
-    font-size: 15px;
-    -webkit-font-smoothing: antialiased;
-  }
-  .page {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 56px 28px 96px;
-    display: flex;
-    flex-direction: column;
-    gap: 56px;
-  }
-  .prose { max-width: 40em; display: flex; flex-direction: column; gap: 18px; }
-
-  .eyebrow {
-    font-size: 11.5px;
-    letter-spacing: 0.16em;
-    color: var(--ink-3);
-    font-family: "SF Mono", "Menlo", ui-monospace, monospace;
-  }
-  h1 {
-    font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP", serif;
-    font-size: clamp(30px, 4.4vw, 46px);
-    line-height: 1.28;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    text-wrap: balance;
-    margin: 10px 0 0;
-  }
-  .dek { color: var(--ink-2); font-size: 16px; margin-top: 14px; max-width: 38em; }
-  .stamp {
-    margin-top: 20px;
-    font-family: "SF Mono", "Menlo", ui-monospace, monospace;
-    font-size: 12px;
-    color: var(--ink-3);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 18px;
-  }
-  h2 {
-    font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP", serif;
-    font-size: 23px;
-    font-weight: 600;
-    margin: 0 0 4px;
-    letter-spacing: 0.01em;
-  }
-  h2 .num {
-    font-family: "SF Mono", "Menlo", ui-monospace, monospace;
-    font-size: 12px;
-    color: var(--ink-3);
-    margin-right: 12px;
-    letter-spacing: 0.08em;
-  }
-  p { margin: 0; }
-  section { display: flex; flex-direction: column; gap: 20px; }
-
-  .figure { display: flex; flex-direction: column; gap: 14px; }
-  .figure-frame {
-    overflow-x: auto;
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    padding: 10px 12px;
-  }
-  svg.map { display: block; width: 100%; min-width: 880px; height: auto; }
-  svg.map text {
-    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "YuGothic", "Noto Sans JP", system-ui, sans-serif;
-    fill: var(--ink);
-  }
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 26px;
-    font-size: 12.5px;
-    color: var(--ink-2);
-    align-items: center;
-  }
-  .legend span { display: inline-flex; align-items: center; gap: 8px; }
-  .legend i { font-style: normal; color: var(--arch); font-size: 13px; }
-  .swatch { width: 22px; height: 0; border-top: 1.6px solid var(--ink-2); display: inline-block; }
-  .swatch.dash { border-top-style: dashed; }
-
-  .lineages { display: flex; flex-direction: column; gap: 0; max-width: 44em; }
-  .lineage {
-    padding: 20px 0;
-    border-top: 1px solid var(--rule);
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-  }
-  .lineage:last-child { border-bottom: 1px solid var(--rule); }
-  .lineage h3 {
-    font-size: 15px;
-    margin: 0;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-  }
-  .lineage .chain {
-    font-family: "SF Mono", "Menlo", ui-monospace, monospace;
-    font-size: 12.5px;
-    color: var(--ink-2);
-    line-height: 1.7;
-  }
-  .lineage p { color: var(--ink-2); font-size: 14.5px; }
-  .l-edu h3 { color: var(--edu); }
-  .l-fin h3 { color: var(--fin); }
-  .l-arch h3 { color: var(--arch); }
-
-  .ancestors { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
-  .ancestor { display: flex; flex-direction: column; gap: 8px; }
-  .ancestor .who {
-    font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
-    font-size: 19px;
-    color: var(--arch);
-  }
-  .ancestor .cite { font-size: 13px; color: var(--ink-3); font-family: "SF Mono", "Menlo", ui-monospace, monospace; line-height: 1.6; }
-  .ancestor p { font-size: 14.5px; color: var(--ink-2); }
-
-  ol.reading { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0; counter-reset: r; }
-  ol.reading li {
-    counter-increment: r;
-    display: grid;
-    grid-template-columns: 46px 1fr;
-    gap: 16px;
-    padding: 16px 0;
-    border-top: 1px solid var(--rule);
-    align-items: baseline;
-  }
-  ol.reading li:last-child { border-bottom: 1px solid var(--rule); }
-  ol.reading li::before {
-    content: counter(r, decimal-leading-zero);
-    font-family: "SF Mono", "Menlo", ui-monospace, monospace;
-    font-size: 12px;
-    color: var(--ink-3);
-    font-variant-numeric: tabular-nums;
-  }
-  ol.reading .t { font-weight: 600; font-size: 15px; }
-  ol.reading .n { color: var(--ink-2); font-size: 14px; display: block; margin-top: 3px; }
-
-  table.status { border-collapse: collapse; font-size: 13.5px; width: 100%; max-width: 40em; }
-  table.status th, table.status td { text-align: left; padding: 9px 14px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
-  table.status th { color: var(--ink-3); font-weight: 500; font-size: 12px; letter-spacing: 0.06em; }
-  table.status td.n { font-family: "SF Mono", "Menlo", ui-monospace, monospace; font-variant-numeric: tabular-nums; color: var(--ink-2); white-space: nowrap; }
-
-  .caveat {
-    border-left: 2px solid var(--gap);
-    padding: 4px 0 4px 18px;
-    color: var(--ink-2);
-    font-size: 14px;
-    max-width: 40em;
-  }
-  .caveat strong { color: var(--gap); font-weight: 600; }
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+:root{
+    --ground:#F3F4F1; --surface:#FBFBF9; --box-bg:#FBFBF9;
+    --ink:#1B2430; --ink-2:#5A6470; --ink-3:#8A939C; --rule:#D5D8D2;
+    --edu:#3F6595; --fin:#8C6320; --arch:#24685A; --intl:#5A6875; --comm:#8C4A63; --mem:#63509A;
+    --edu-tint:rgba(63,101,149,.055); --fin-tint:rgba(140,99,32,.055); --arch-tint:rgba(36,104,90,.055);
+    --intl-tint:rgba(90,104,117,.05); --comm-tint:rgba(140,74,99,.05); --mem-tint:rgba(99,80,154,.05);
+    --edu-fill:rgba(63,101,149,.09); --fin-fill:rgba(140,99,32,.09); --arch-fill:rgba(36,104,90,.09);
+    --intl-fill:rgba(90,104,117,.09); --comm-fill:rgba(140,74,99,.09); --mem-fill:rgba(99,80,154,.09);
+    --star-fill:rgba(36,104,90,.19); --key-fill:rgba(140,74,99,.16);
+}
+@media (prefers-color-scheme:dark){:root{
+    --ground:#13171B; --surface:#1A1F25; --box-bg:#1A1F25;
+    --ink:#E7EAE5; --ink-2:#A3ACB4; --ink-3:#78818A; --rule:#2E353C;
+    --edu:#7FA6DB; --fin:#D2A455; --arch:#5BB79E; --intl:#94A3B2; --comm:#CB8CA5; --mem:#A392D6;
+    --edu-tint:rgba(127,166,219,.07); --fin-tint:rgba(210,164,85,.07); --arch-tint:rgba(91,183,158,.07);
+    --intl-tint:rgba(148,163,178,.06); --comm-tint:rgba(203,140,165,.06); --mem-tint:rgba(163,146,214,.06);
+    --edu-fill:rgba(127,166,219,.13); --fin-fill:rgba(210,164,85,.13); --arch-fill:rgba(91,183,158,.13);
+    --intl-fill:rgba(148,163,178,.12); --comm-fill:rgba(203,140,165,.12); --mem-fill:rgba(163,146,214,.12);
+    --star-fill:rgba(91,183,158,.26); --key-fill:rgba(203,140,165,.22);
+}}
+:root[data-theme="light"]{
+    --ground:#F3F4F1; --surface:#FBFBF9; --box-bg:#FBFBF9;
+    --ink:#1B2430; --ink-2:#5A6470; --ink-3:#8A939C; --rule:#D5D8D2;
+    --edu:#3F6595; --fin:#8C6320; --arch:#24685A; --intl:#5A6875; --comm:#8C4A63; --mem:#63509A;
+    --edu-tint:rgba(63,101,149,.055); --fin-tint:rgba(140,99,32,.055); --arch-tint:rgba(36,104,90,.055);
+    --intl-tint:rgba(90,104,117,.05); --comm-tint:rgba(140,74,99,.05); --mem-tint:rgba(99,80,154,.05);
+    --edu-fill:rgba(63,101,149,.09); --fin-fill:rgba(140,99,32,.09); --arch-fill:rgba(36,104,90,.09);
+    --intl-fill:rgba(90,104,117,.09); --comm-fill:rgba(140,74,99,.09); --mem-fill:rgba(99,80,154,.09);
+    --star-fill:rgba(36,104,90,.19); --key-fill:rgba(140,74,99,.16);
+}
+:root[data-theme="dark"]{
+    --ground:#13171B; --surface:#1A1F25; --box-bg:#1A1F25;
+    --ink:#E7EAE5; --ink-2:#A3ACB4; --ink-3:#78818A; --rule:#2E353C;
+    --edu:#7FA6DB; --fin:#D2A455; --arch:#5BB79E; --intl:#94A3B2; --comm:#CB8CA5; --mem:#A392D6;
+    --edu-tint:rgba(127,166,219,.07); --fin-tint:rgba(210,164,85,.07); --arch-tint:rgba(91,183,158,.07);
+    --intl-tint:rgba(148,163,178,.06); --comm-tint:rgba(203,140,165,.06); --mem-tint:rgba(163,146,214,.06);
+    --edu-fill:rgba(127,166,219,.13); --fin-fill:rgba(210,164,85,.13); --arch-fill:rgba(91,183,158,.13);
+    --intl-fill:rgba(148,163,178,.12); --comm-fill:rgba(203,140,165,.12); --mem-fill:rgba(163,146,214,.12);
+    --star-fill:rgba(91,183,158,.26); --key-fill:rgba(203,140,165,.22);
+}
+body{background:var(--ground);color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Noto Sans JP",system-ui,sans-serif;line-height:1.85;font-size:15px;-webkit-font-smoothing:antialiased}
+.page{max-width:1180px;margin:0 auto;padding:56px 28px 96px;display:flex;flex-direction:column;gap:56px}
+.prose{max-width:40em;display:flex;flex-direction:column;gap:18px}
+.eyebrow{font-size:11.5px;letter-spacing:.16em;color:var(--ink-3);font-family:"SF Mono","Menlo",ui-monospace,monospace}
+h1{font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;font-size:clamp(30px,4.4vw,46px);line-height:1.28;font-weight:600;text-wrap:balance;margin:10px 0 0}
+.dek{color:var(--ink-2);font-size:16px;margin-top:14px;max-width:38em}
+.stamp{margin-top:20px;font-family:"SF Mono","Menlo",ui-monospace,monospace;font-size:12px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:6px 18px}
+h2{font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;font-size:23px;font-weight:600;margin:0 0 4px}
+h2 .num{font-family:"SF Mono","Menlo",ui-monospace,monospace;font-size:12px;color:var(--ink-3);margin-right:12px;letter-spacing:.08em}
+p{margin:0}
+section{display:flex;flex-direction:column;gap:20px}
+.figure{display:flex;flex-direction:column;gap:14px}
+.figure-frame{overflow-x:auto;background:var(--surface);border:1px solid var(--rule);padding:10px 12px}
+svg.map{display:block;width:100%;min-width:1080px;height:auto}
+svg.map text{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Noto Sans JP",system-ui,sans-serif;fill:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 26px;font-size:12.5px;color:var(--ink-2);align-items:center}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{font-style:normal;font-size:13px}
+.swatch{width:22px;height:0;border-top:1.6px solid var(--ink-2);display:inline-block}
+.swatch.dash{border-top-style:dashed}
+.lineages{display:flex;flex-direction:column;max-width:44em}
+.lineage{padding:20px 0;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:7px}
+.lineage:last-child{border-bottom:1px solid var(--rule)}
+.lineage h3{font-size:15px;margin:0;font-weight:600;letter-spacing:.02em}
+.lineage .chain{font-family:"SF Mono","Menlo",ui-monospace,monospace;font-size:12.5px;color:var(--ink-2);line-height:1.7}
+.lineage p{color:var(--ink-2);font-size:14.5px}
+.l-edu h3{color:var(--edu)} .l-fin h3{color:var(--fin)} .l-arch h3{color:var(--arch)}
+.l-intl h3{color:var(--intl)} .l-comm h3{color:var(--comm)} .l-mem h3{color:var(--mem)}
+.ancestors{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+.ancestor{display:flex;flex-direction:column;gap:8px}
+.ancestor .who{font-family:"Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;font-size:19px;color:var(--arch)}
+.ancestor .cite{font-size:13px;color:var(--ink-3);font-family:"SF Mono","Menlo",ui-monospace,monospace;line-height:1.6}
+.ancestor p{font-size:14.5px;color:var(--ink-2)}
+ol.reading{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;counter-reset:r}
+ol.reading li{counter-increment:r;display:grid;grid-template-columns:46px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--rule);align-items:baseline}
+ol.reading li:last-child{border-bottom:1px solid var(--rule)}
+ol.reading li::before{content:counter(r,decimal-leading-zero);font-family:"SF Mono","Menlo",ui-monospace,monospace;font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+ol.reading .t{font-weight:600;font-size:15px}
+ol.reading .n{color:var(--ink-2);font-size:14px;display:block;margin-top:3px}
+table.status{border-collapse:collapse;font-size:13.5px;width:100%;max-width:44em}
+table.status th,table.status td{text-align:left;padding:9px 14px 9px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+table.status th{color:var(--ink-3);font-weight:500;font-size:12px;letter-spacing:.06em}
+table.status td.n{font-family:"SF Mono","Menlo",ui-monospace,monospace;font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
+.caveat{border-left:2px solid var(--comm);padding:4px 0 4px 18px;color:var(--ink-2);font-size:14px;max-width:40em}
+.caveat strong{color:var(--comm);font-weight:600}
+.caveat.key{border-color:var(--mem)} .caveat.key strong{color:var(--mem)}
 </style>
 </head>
 <body>
 <div class="page">
+<header class="prose">
+<div class="eyebrow">公共施設終活PJ ／ 先行研究リサーチ</div>
+<h1>閉校・廃校研究の引用マップ</h1>
+<p class="dek">最先端の論文が実際に何を引いているかを参考文献リストから復元した系譜。6つの系統、2つの共通祖先、そして分野をまたぐ橋が架かっていない場所が見える。</p>
+<div class="stamp"><span>2026-08-14</span><span>31ノード</span><span>参考文献リストは実取得のみ</span><span>矢印は「引用している」向き</span></div>
+</header>
 
-  <header class="prose">
-    <div class="eyebrow">公共施設終活PJ ／ 先行研究リサーチ</div>
-    <h1>閉校・廃校研究の引用マップ</h1>
-    <p class="dek">最先端の4本が実際に何を引いているかを参考文献リストから復元した系譜。3つの系統と、そのうち2つを束ねる共通祖先が見える。</p>
-    <div class="stamp">
-      <span>2026-08-14</span>
-      <span>対象4本の参考文献 実取得</span>
-      <span>矢印は「引用している」向き</span>
-    </div>
-  </header>
-
-  <section class="figure">
-    <div class="figure-frame">
-      <svg class="map" viewBox="0 0 1262 872" role="img" aria-label="廃校研究の引用系譜図。教育行政・社会学系、財政・経済系、建築計画系の3系統と、共通祖先である斎尾直子2008および野澤・恒川シリーズを示す。">
-        <defs>
-          <marker id="ah-edu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M0,1 L10,5 L0,9 z" fill="var(--edu)"></path>
-          </marker>
-          <marker id="ah-fin" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M0,1 L10,5 L0,9 z" fill="var(--fin)"></path>
-          </marker>
-          <marker id="ah-arch" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M0,1 L10,5 L0,9 z" fill="var(--arch)"></path>
-          </marker>
-        </defs>
-
-        <!-- lane bands -->
-        <rect x="40" y="84" width="1182" height="188" fill="var(--edu-tint)"></rect>
-        <rect x="40" y="286" width="1182" height="146" fill="var(--fin-tint)"></rect>
-        <rect x="40" y="446" width="1182" height="260" fill="var(--arch-tint)"></rect>
-        <rect x="40" y="720" width="1182" height="120" fill="var(--gap-tint)"></rect>
-
-        <!-- lane labels -->
-        <text transform="translate(26,178) rotate(-90)" text-anchor="middle" font-size="12" letter-spacing="0.1em" fill="var(--edu)">教育行政・社会学系</text>
-        <text transform="translate(26,359) rotate(-90)" text-anchor="middle" font-size="12" letter-spacing="0.1em" fill="var(--fin)">財政・経済系</text>
-        <text transform="translate(26,576) rotate(-90)" text-anchor="middle" font-size="12" letter-spacing="0.1em" fill="var(--arch)">建築計画系</text>
-        <text transform="translate(26,780) rotate(-90)" text-anchor="middle" font-size="12" letter-spacing="0.1em" fill="var(--gap)">儀礼・記憶系</text>
-
-        <!-- column headers -->
-        <text x="56" y="42" font-size="14" font-weight="600">古典・祖先</text>
-        <text x="56" y="62" font-size="11.5" fill="var(--ink-3)">〜2012</text>
-        <text x="436" y="42" font-size="14" font-weight="600">中間層</text>
-        <text x="436" y="62" font-size="11.5" fill="var(--ink-3)">2013–2021</text>
-        <text x="856" y="42" font-size="14" font-weight="600">最先端</text>
-        <text x="856" y="62" font-size="11.5" fill="var(--ink-3)">2024–</text>
-        <line x1="40" y1="74" x2="1222" y2="74" stroke="var(--rule)" stroke-width="1"></line>
-
-        <!-- ============ arrows (drawn under boxes) ============ -->
+<section class="figure">
+<div class="figure-frame">
+<svg class="map" viewBox="0 0 1280 1690" role="img" aria-label="廃校・閉校研究の引用系譜図。教育社会学、財政・経済、建築計画・都市計画、海外、コミュニティ・社会教育、記憶・喪失の6系統を示す。">
+<defs>
+<marker id="ah-edu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="var(--edu)"></path></marker>
+<marker id="ah-fin" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="var(--fin)"></path></marker>
+<marker id="ah-arch" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="var(--arch)"></path></marker>
+<marker id="ah-intl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="var(--intl)"></path></marker>
+<marker id="ah-comm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="var(--comm)"></path></marker>
+<marker id="ah-mem" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,1 L10,5 L0,9 z" fill="var(--mem)"></path></marker>
+</defs>
+        <rect x="40" y="84" width="1200" height="238" fill="var(--edu-tint)"></rect>
+        <text transform="translate(22,203) rotate(-90)" text-anchor="middle" font-size="12" letter-spacing="0.1em" fill="var(--edu)">教育社会学・統廃合研究</text>
+        <rect x="40" y="334" width="1200" height="166" fill="var(--fin-tint)"></rect>
+        <text transform="translate(22,417) rotate(-90)" text-anchor="middle" font-size="12" letter-spacing="0.1em" fill="var(--fin)">財政・経済（合併研究）</text>
+        <rect x="40" y="512" width="1200" height="518" fill="var(--arch-tint)"></rect>
+        <text transform="translate(22,771) rotate(-90)" text-anchor="middle" font-size="12" letter-spacing="0.1em" fill="var(--arch)">建築計画・都市計画</text>
+        <rect x="40" y="1042" width="1200" height="108" fill="var(--intl-tint)"></rect>
+        <text transform="translate(22,1096) rotate(-90)" text-anchor="middle" font-size="12" letter-spacing="0.1em" fill="var(--intl)">海外・農村人口減少</text>
+        <rect x="40" y="1162" width="1200" height="298" fill="var(--comm-tint)"></rect>
+        <text transform="translate(22,1311) rotate(-90)" text-anchor="middle" font-size="12" letter-spacing="0.1em" fill="var(--comm)">コミュニティ・社会教育</text>
+        <rect x="40" y="1472" width="1200" height="188" fill="var(--mem-tint)"></rect>
+        <text transform="translate(22,1566) rotate(-90)" text-anchor="middle" font-size="12" letter-spacing="0.1em" fill="var(--mem)">記憶・喪失・語り</text>
+        <text x="56" y="42" font-size="14" font-weight="600">起点・古典</text>
+        <text x="56" y="62" font-size="11.5" fill="var(--ink-3)">各系統の出発点</text>
+        <text x="420" y="42" font-size="14" font-weight="600">中間層</text>
+        <text x="420" y="62" font-size="11.5" fill="var(--ink-3)">蓄積をつくった世代</text>
+        <text x="830" y="42" font-size="14" font-weight="600">最先端</text>
+        <text x="830" y="62" font-size="11.5" fill="var(--ink-3)">2021–2026</text>
+        <line x1="40" y1="74" x2="1240" y2="74" stroke="var(--rule)" stroke-width="1"></line>
         <g fill="none" stroke-width="1.4">
-          <path d="M296,135 C 350,135 382,155 429,159" stroke="var(--edu)" marker-end="url(#ah-edu)"></path>
-          <path d="M296,215 C 350,215 382,192 429,187" stroke="var(--edu)" marker-end="url(#ah-edu)"></path>
-          <path d="M296,232 C 520,270 680,264 849,270" stroke="var(--edu)" marker-end="url(#ah-edu)"></path>
-          <path d="M296,346 C 350,346 382,345 429,345" stroke="var(--fin)" marker-end="url(#ah-fin)"></path>
-          <path d="M686,344 C 762,344 792,316 849,303" stroke="var(--fin)" marker-end="url(#ah-fin)"></path>
-          <path d="M686,170 C 762,170 792,226 849,245" stroke="var(--edu)" marker-end="url(#ah-edu)"></path>
-          <path d="M296,490 C 480,424 660,410 849,439" stroke="var(--arch)" marker-end="url(#ah-arch)"></path>
-          <path d="M296,545 C 520,662 690,652 849,628" stroke="var(--arch)" marker-end="url(#ah-arch)"></path>
-          <path d="M686,500 C 762,500 792,478 849,470" stroke="var(--arch)" marker-end="url(#ah-arch)"></path>
-          <path d="M856,530 C 822,528 818,500 849,493" stroke="var(--arch)" marker-end="url(#ah-arch)"></path>
-          <path d="M686,548 C 802,544 822,420 849,322" stroke="var(--arch)" stroke-dasharray="5 4" marker-end="url(#ah-arch)"></path>
+          <path d="M296,140 C 350,140 380,148 415,150" stroke="var(--edu)" marker-end="url(#ah-edu)"></path>
+          <path d="M296,239 C 350,239 380,172 415,163" stroke="var(--edu)" marker-end="url(#ah-edu)"></path>
+          <path d="M296,297 C 350,297 380,190 415,178" stroke="var(--edu)" marker-end="url(#ah-edu)"></path>
+          <path d="M550,200 L 550,212" stroke="var(--edu)" marker-end="url(#ah-edu)"></path>
+          <path d="M296,150 C 340,180 370,250 415,256" stroke="var(--edu)" marker-end="url(#ah-edu)"></path>
+          <path d="M680,262 C 750,262 780,380 826,420" stroke="var(--edu)" marker-end="url(#ah-edu)"></path>
+          <path d="M680,130 C 760,130 790,330 826,412" stroke="var(--edu)" marker-end="url(#ah-edu)"></path>
+          <path d="M296,393 C 350,393 380,387 415,385" stroke="var(--fin)" marker-end="url(#ah-fin)"></path>
+          <path d="M680,385 C 750,385 780,420 826,436" stroke="var(--fin)" marker-end="url(#ah-fin)"></path>
+          <path d="M1015,398 L 1015,408" stroke="var(--fin)" marker-end="url(#ah-fin)"></path>
+          <path d="M296,730 C 380,1000 700,1000 826,800" stroke="var(--arch)" marker-end="url(#ah-arch)"></path>
+          <path d="M296,762 C 390,1018 710,1018 826,876" stroke="var(--arch)" marker-end="url(#ah-arch)"></path>
+          <path d="M680,576 C 750,576 780,720 826,742" stroke="var(--arch)" marker-end="url(#ah-arch)"></path>
+          <path d="M680,660 C 750,660 780,740 826,756" stroke="var(--arch)" marker-end="url(#ah-arch)"></path>
+          <path d="M680,744 C 750,744 780,758 826,770" stroke="var(--arch)" marker-end="url(#ah-arch)"></path>
+          <path d="M680,828 C 750,828 780,850 826,858" stroke="var(--arch)" marker-end="url(#ah-arch)"></path>
+          <path d="M680,918 C 750,918 780,810 826,786" stroke="var(--arch)" marker-end="url(#ah-arch)"></path>
+          <path d="M830,672 C 798,672 794,734 826,740" stroke="var(--arch)" marker-end="url(#ah-arch)"></path>
+          <path d="M680,900 C 790,890 800,600 826,468" stroke="var(--arch)" marker-end="url(#ah-arch)" stroke-dasharray="5 4"></path>
+          <path d="M680,1090 C 762,1090 786,952 826,900" stroke="var(--intl)" marker-end="url(#ah-intl)"></path>
+          <path d="M296,1220 C 350,1220 380,1218 415,1216" stroke="var(--comm)" marker-end="url(#ah-comm)"></path>
+          <path d="M680,1214 C 750,1214 780,1214 826,1216" stroke="var(--comm)" marker-end="url(#ah-comm)"></path>
+          <path d="M680,1412 C 762,1412 780,1540 826,1576" stroke="var(--comm)" marker-end="url(#ah-comm)"></path>
+          <path d="M1130,1256 C 1236,1330 1236,1470 1166,1556" stroke="var(--comm)" marker-end="url(#ah-comm)"></path>
+          <path d="M296,1528 C 420,1528 700,1600 826,1600" stroke="var(--mem)" marker-end="url(#ah-mem)"></path>
+          <path d="M296,1611 C 420,1611 700,1620 826,1614" stroke="var(--mem)" marker-end="url(#ah-mem)"></path>
+          <path d="M1015,1548 L 1015,1556" stroke="var(--mem)" marker-end="url(#ah-mem)"></path>
         </g>
-        <text x="762" y="404" font-size="11" fill="var(--arch)" text-anchor="middle">系統をまたぐ引用</text>
+        <text x="770" y="600" font-size="11" fill="var(--arch)" text-anchor="middle">系統をまたぐ引用</text>
+        <g>
+        <rect x="56" y="100" width="240" height="96" fill="var(--star-fill)" stroke="var(--edu)" stroke-width="1.8"></rect>
+        <text x="72" y="122" font-size="14.5" font-weight="600">若林敬子</text>
+        <text x="72" y="140" font-size="11.2" fill="var(--ink-2)">1973 学区と村落社会</text>
+        <text x="72" y="156" font-size="11.2" fill="var(--ink-2)">1974 学校統合と農山村</text>
+        <text x="72" y="172" font-size="11.2" fill="var(--ink-2)">1999『学校統廃合の社会学的研究』</text>
+        <text x="72" y="188" font-size="11.2" fill="var(--ink-3)">2012 増補版・御茶の水書房</text>
+        </g>
+        <g>
+        <rect x="56" y="208" width="240" height="62" fill="var(--box-bg)" stroke="var(--edu)" stroke-width="1"></rect>
+        <text x="72" y="230" font-size="14.5" font-weight="600">葉養正明</text>
+        <text x="72" y="248" font-size="11.2" fill="var(--ink-2)">1990・1993・2010</text>
+        <text x="72" y="264" font-size="11.2" fill="var(--ink-3)">学区再編・学校配置</text>
+        </g>
+        <g>
+        <rect x="56" y="274" width="240" height="46" fill="var(--box-bg)" stroke="var(--edu)" stroke-width="1"></rect>
+        <text x="72" y="296" font-size="14.5" font-weight="600">玉井康之 2005・2010</text>
+        <text x="72" y="314" font-size="11.2" fill="var(--ink-3)">へき地・小規模校と地域振興</text>
+        </g>
+        <g>
+        <rect x="420" y="108" width="260" height="92" fill="var(--edu-fill)" stroke="var(--edu)" stroke-width="1.4"></rect>
+        <text x="436" y="130" font-size="14.5" font-weight="600">新藤慶 2013 / 2014</text>
+        <text x="436" y="148" font-size="11.2" fill="var(--ink-2)">2013＝2000年以降の研究動向レビュー</text>
+        <text x="436" y="164" font-size="11.2" fill="var(--ink-2)">2014＝平成の大合併と小学校統廃合</text>
+        <text x="436" y="180" font-size="11.2" fill="var(--ink-3)">参考文献 45件／13件 実取得</text>
+        </g>
+        <g>
+        <rect x="420" y="216" width="260" height="92" fill="var(--box-bg)" stroke="var(--edu)" stroke-width="1"></rect>
+        <text x="436" y="238" font-size="14.5" font-weight="600">青木栄一ほか 2016</text>
+        <text x="436" y="256" font-size="11.2" fill="var(--ink-2)">統廃合の規定要因</text>
+        <text x="436" y="272" font-size="11.2" fill="var(--ink-2)">全国市区パネル・固定効果モデル</text>
+        <text x="436" y="288" font-size="11.2" fill="var(--ink-3)">被引用 7（Google Scholar）</text>
+        </g>
+        <g>
+        <rect x="56" y="350" width="240" height="86" fill="var(--box-bg)" stroke="var(--fin)" stroke-width="1"></rect>
+        <text x="72" y="372" font-size="14.5" font-weight="600">市町村合併の財政研究群</text>
+        <text x="72" y="390" font-size="11.2" fill="var(--ink-2)">西川 2002・林正義 2002</text>
+        <text x="72" y="406" font-size="11.2" fill="var(--ink-2)">宮崎毅・山下耕治・広田ほか</text>
+        <text x="72" y="422" font-size="11.2" fill="var(--ink-3)">歳出削減効果と最適規模</text>
+        </g>
+        <g>
+        <rect x="420" y="352" width="260" height="66" fill="var(--box-bg)" stroke="var(--fin)" stroke-width="1"></rect>
+        <text x="436" y="374" font-size="14.5" font-weight="600">宮崎悟 2015 / 2016</text>
+        <text x="436" y="392" font-size="11.2" fill="var(--ink-3)">市町村合併と公立小学校の統廃合</text>
+        </g>
+        <g>
+        <rect x="830" y="340" width="370" height="58" fill="var(--box-bg)" stroke="var(--fin)" stroke-width="1"></rect>
+        <text x="846" y="362" font-size="14.5" font-weight="600">宮錦三樹 2023・鈴木宏幸 2023</text>
+        <text x="846" y="380" font-size="11.2" fill="var(--ink-3)">統廃合の教育財政効果・規模の経済性</text>
+        </g>
+        <g>
+        <rect x="830" y="412" width="370" height="78" fill="var(--box-bg)" stroke="var(--fin)" stroke-width="1"></rect>
+        <text x="846" y="434" font-size="14.5" font-weight="600">鈴木宏幸 2024</text>
+        <text x="846" y="452" font-size="11.2" fill="var(--ink-2)">合併規模が学校統廃合に与えた影響</text>
+        <text x="846" y="468" font-size="11.2" fill="var(--ink-3)">地域活性研究 21 ／ 参考文献 19件 実取得</text>
+        </g>
+        <g>
+        <rect x="56" y="700" width="240" height="104" fill="var(--star-fill)" stroke="var(--arch)" stroke-width="1.8"></rect>
+        <text x="72" y="722" font-size="14.5" font-weight="600">斎尾直子 2008 ★</text>
+        <text x="72" y="740" font-size="11.2" fill="var(--ink-2)">統廃合プロセスと廃校舎利活用</text>
+        <text x="72" y="756" font-size="11.2" fill="var(--ink-2)">茨城県 30年・全廃校の悉皆</text>
+        <text x="72" y="772" font-size="11.2" fill="var(--ink-3)">建築学会計画系 73(627)</text>
+        </g>
+        <g>
+        <rect x="420" y="540" width="260" height="72" fill="var(--box-bg)" stroke="var(--arch)" stroke-width="1"></rect>
+        <text x="436" y="562" font-size="14.5" font-weight="600">久保勝裕ほか 2009</text>
+        <text x="436" y="580" font-size="11.2" fill="var(--ink-2)">北海道・小規模自治体の廃校利用</text>
+        <text x="436" y="596" font-size="11.2" fill="var(--ink-3)">都市計画論文集 44(1)</text>
+        </g>
+        <g>
+        <rect x="420" y="624" width="260" height="72" fill="var(--box-bg)" stroke="var(--arch)" stroke-width="1"></rect>
+        <text x="436" y="646" font-size="14.5" font-weight="600">山本幸子・中園眞人ほか 2012</text>
+        <text x="436" y="664" font-size="11.2" fill="var(--ink-2)">山口県の廃校施設 運用状況</text>
+        <text x="436" y="680" font-size="11.2" fill="var(--ink-3)">建築学会技術報告集 18(38)</text>
+        </g>
+        <g>
+        <rect x="420" y="708" width="260" height="72" fill="var(--box-bg)" stroke="var(--arch)" stroke-width="1"></rect>
+        <text x="436" y="730" font-size="14.5" font-weight="600">波出石誠・熊野稔 2017</text>
+        <text x="436" y="748" font-size="11.2" fill="var(--ink-2)">民間公募方式の廃校活用・三好市</text>
+        <text x="436" y="764" font-size="11.2" fill="var(--ink-3)">建築学会技術報告集 23(53)</text>
+        </g>
+        <g>
+        <rect x="420" y="792" width="260" height="72" fill="var(--box-bg)" stroke="var(--arch)" stroke-width="1" stroke-dasharray="4 3"></rect>
+        <text x="436" y="814" font-size="14.5" font-weight="600">時任美月・西野辰哉 2018</text>
+        <text x="436" y="832" font-size="11.2" fill="var(--ink-2)">児童数推計による統廃合シミュレーション</text>
+        <text x="436" y="848" font-size="11.2" fill="var(--ink-3)">建築学会技術報告集 24(57)／要確認</text>
+        </g>
+        <g>
+        <rect x="420" y="876" width="260" height="96" fill="var(--star-fill)" stroke="var(--arch)" stroke-width="1.8"></rect>
+        <text x="436" y="898" font-size="14.5" font-weight="600">野澤英希・恒川和久ほか ★</text>
+        <text x="436" y="916" font-size="11.2" fill="var(--ink-2)">2020 発生要因（東海4県 423校）</text>
+        <text x="436" y="932" font-size="11.2" fill="var(--ink-2)">2021 再利用用途／利用状況</text>
+        <text x="436" y="948" font-size="11.2" fill="var(--ink-3)">建築学会計画系 85(777)・86(781)(786)</text>
+        </g>
+        <g>
+        <rect x="830" y="560" width="370" height="72" fill="var(--box-bg)" stroke="var(--arch)" stroke-width="1" stroke-dasharray="4 3"></rect>
+        <text x="846" y="582" font-size="14.5" font-weight="600">舟瀬優月ほか 2021</text>
+        <text x="846" y="600" font-size="11.2" fill="var(--ink-2)">廃校活用の優良事例76校と地域参画</text>
+        <text x="846" y="616" font-size="11.2" fill="var(--ink-3)">都市計画学会関西支部・査読なし</text>
+        </g>
+        <g>
+        <rect x="830" y="644" width="370" height="66" fill="var(--box-bg)" stroke="var(--arch)" stroke-width="1"></rect>
+        <text x="846" y="666" font-size="14.5" font-weight="600">茅田大輝・西野辰哉 2024</text>
+        <text x="846" y="684" font-size="11.2" fill="var(--ink-3)">立地特性による利活用可能性判別式</text>
+        </g>
+        <g>
+        <rect x="830" y="722" width="370" height="88" fill="var(--box-bg)" stroke="var(--arch)" stroke-width="1"></rect>
+        <text x="846" y="744" font-size="14.5" font-weight="600">坂本淳 2024</text>
+        <text x="846" y="762" font-size="11.2" fill="var(--ink-2)">廃校の活用状況 × 空間指標の要因分析</text>
+        <text x="846" y="778" font-size="11.2" fill="var(--ink-2)">都市計画論文集 59(3) ／ 参考文献 16件</text>
+        <text x="846" y="794" font-size="11.2" fill="var(--ink-3)">現在の標準文献リストを兼ねる</text>
+        </g>
+        <g>
+        <rect x="830" y="822" width="370" height="86" fill="var(--box-bg)" stroke="var(--arch)" stroke-width="1"></rect>
+        <text x="846" y="844" font-size="14.5" font-weight="600">小野楓佳・西野辰哉 2024</text>
+        <text x="846" y="862" font-size="11.2" fill="var(--ink-2)">統廃合後の人口動態への中長期影響</text>
+        <text x="846" y="878" font-size="11.2" fill="var(--ink-2)">建築学会計画系 89(826) ／ 参考文献 30件</text>
+        <text x="846" y="894" font-size="11.2" fill="var(--ink-3)">若林・葉養ともに引用なし</text>
+        </g>
+        <g>
+        <rect x="56" y="1058" width="240" height="80" fill="var(--box-bg)" stroke="var(--intl)" stroke-width="1"></rect>
+        <text x="72" y="1080" font-size="14.5" font-weight="600">Egelund &amp; Laustsen 2007</text>
+        <text x="72" y="1098" font-size="11.2" fill="var(--ink-2)">デンマークの統廃合と地域社会</text>
+        <text x="72" y="1114" font-size="11.2" fill="var(--ink-2)">統廃合は人口減少の結果で</text>
+        <text x="72" y="1130" font-size="11.2" fill="var(--ink-3)">加速要因ではないと結論</text>
+        </g>
+        <g>
+        <rect x="420" y="1058" width="260" height="80" fill="var(--box-bg)" stroke="var(--intl)" stroke-width="1"></rect>
+        <text x="436" y="1080" font-size="14.5" font-weight="600">Slee &amp; Miller 2015</text>
+        <text x="436" y="1098" font-size="11.2" fill="var(--ink-2)">スコットランドの廃校と農村衰退</text>
+        <text x="436" y="1114" font-size="11.2" fill="var(--ink-2)">小規模校を地域の核とする</text>
+        <text x="436" y="1130" font-size="11.2" fill="var(--ink-3)">根拠は不十分と論じる</text>
+        </g>
+        <g>
+        <rect x="56" y="1180" width="240" height="80" fill="var(--box-bg)" stroke="var(--comm)" stroke-width="1"></rect>
+        <text x="72" y="1202" font-size="14.5" font-weight="600">金井徹・宮腰英一 2008</text>
+        <text x="72" y="1220" font-size="11.2" fill="var(--ink-2)">市町村合併に伴う統廃合プロセス</text>
+        <text x="72" y="1236" font-size="11.2" fill="var(--ink-3)">秋田県A市の事例</text>
+        </g>
+        <g>
+        <rect x="420" y="1178" width="260" height="76" fill="var(--box-bg)" stroke="var(--comm)" stroke-width="1"></rect>
+        <text x="436" y="1200" font-size="14.5" font-weight="600">丹間康仁 2009 / 2010</text>
+        <text x="436" y="1218" font-size="11.2" fill="var(--ink-2)">コプロダクション論による「協働」</text>
+        <text x="436" y="1234" font-size="11.2" fill="var(--ink-3)">日本社会教育学会紀要 46</text>
+        </g>
+        <g>
+        <rect x="420" y="1268" width="260" height="88" fill="var(--key-fill)" stroke="var(--comm)" stroke-width="1.8"></rect>
+        <text x="436" y="1290" font-size="14.5" font-weight="600">丹間康仁 2012 ◆</text>
+        <text x="436" y="1308" font-size="11.2" fill="var(--ink-2)">統廃合に伴う校名と校歌の変更</text>
+        <text x="436" y="1324" font-size="11.2" fill="var(--ink-2)">茨城県大子町の統合事例</text>
+        <text x="436" y="1340" font-size="11.2" fill="var(--ink-3)">筑波大「地域と教育」研究年報 3</text>
+        </g>
+        <g>
+        <rect x="420" y="1370" width="260" height="84" fill="var(--box-bg)" stroke="var(--comm)" stroke-width="1"></rect>
+        <text x="436" y="1392" font-size="14.5" font-weight="600">丹間康仁 2015</text>
+        <text x="436" y="1410" font-size="11.2" fill="var(--ink-2)">『学習と協働』東洋館出版社</text>
+        <text x="436" y="1426" font-size="11.2" fill="var(--ink-2)">統廃合をめぐる住民・行政関係</text>
+        <text x="436" y="1442" font-size="11.2" fill="var(--ink-3)">現・筑波大学人間系 准教授</text>
+        </g>
+        <g>
+        <rect x="830" y="1180" width="370" height="76" fill="var(--box-bg)" stroke="var(--comm)" stroke-width="1"></rect>
+        <text x="846" y="1202" font-size="14.5" font-weight="600">権安理 2013</text>
+        <text x="846" y="1220" font-size="11.2" fill="var(--ink-2)">廃校活用の公共性と有効性・鴨川市</text>
+        <text x="846" y="1236" font-size="11.2" fill="var(--ink-3)">＝活用研究と社会学をつなぐ数少ない1本</text>
+        </g>
+        <g>
+        <rect x="830" y="1274" width="370" height="66" fill="var(--box-bg)" stroke="var(--comm)" stroke-width="1"></rect>
+        <text x="846" y="1296" font-size="14.5" font-weight="600">山本由美・平岡和久編 2022</text>
+        <text x="846" y="1314" font-size="11.2" fill="var(--ink-3)">『学校統廃合を超えて』自治体研究社</text>
+        </g>
+        <g>
+        <rect x="56" y="1490" width="240" height="76" fill="var(--box-bg)" stroke="var(--mem)" stroke-width="1"></rect>
+        <text x="72" y="1512" font-size="14.5" font-weight="600">Nora 1996『記憶の場』</text>
+        <text x="72" y="1530" font-size="11.2" fill="var(--ink-2)">Davis 1979『ノスタルジアの社会学』</text>
+        <text x="72" y="1546" font-size="11.2" fill="var(--ink-3)">記憶研究の古典</text>
+        </g>
+        <g>
+        <rect x="56" y="1582" width="240" height="58" fill="var(--box-bg)" stroke="var(--mem)" stroke-width="1"></rect>
+        <text x="72" y="1604" font-size="14.5" font-weight="600">浜日出夫 2000</text>
+        <text x="72" y="1622" font-size="11.2" fill="var(--ink-3)">記憶のトポグラフィー</text>
+        </g>
+        <g>
+        <rect x="830" y="1490" width="370" height="58" fill="var(--box-bg)" stroke="var(--mem)" stroke-width="1"></rect>
+        <text x="846" y="1512" font-size="14.5" font-weight="600">堀川三郎 2021</text>
+        <text x="846" y="1530" font-size="11.2" fill="var(--ink-3)">歴史的環境保存と集合的記憶</text>
+        </g>
+        <g>
+        <rect x="830" y="1560" width="370" height="88" fill="var(--key-fill)" stroke="var(--mem)" stroke-width="1.8"></rect>
+        <text x="846" y="1582" font-size="14.5" font-weight="600">水野遼太郎 2026</text>
+        <text x="846" y="1600" font-size="11.2" fill="var(--ink-2)">閉校は地域の子どもに何をもたらしたのか</text>
+        <text x="846" y="1616" font-size="11.2" fill="var(--ink-2)">閉校記念誌と若者の語り・フォーラム現代社会学 25</text>
+        <text x="846" y="1632" font-size="11.2" fill="var(--ink-3)">参考文献 31件 実取得／若林・新藤・丹間を引用</text>
+        </g>
+        <text x="56" y="1310" font-size="12.5" fill="var(--ink-2)">建築計画・都市計画の系統から</text>
+        <text x="56" y="1332" font-size="12.5" fill="var(--ink-2)">この下2レーンへ入る矢印は1本もない。</text>
+        <text x="56" y="1354" font-size="12.5" fill="var(--comm)">空白は「研究がない」ことではなく</text>
+        <text x="56" y="1376" font-size="12.5" fill="var(--comm)">分野の橋が架かっていないこと。</text>
+</svg>
+</div>
+<div class="legend">
+<span><i class="swatch"></i>引用している（矢の先が引用元）</span>
+<span><i class="swatch dash"></i>系統をまたぐ引用／書誌が要確認</span>
+<span><i style="color:var(--arch)">★</i>共通祖先</span>
+<span><i style="color:var(--comm)">◆</i>みおくりに直結</span>
+</div>
+</section>
 
-        <!-- ============ boxes ============ -->
-        <!-- lane A -->
-        <g>
-          <rect x="56" y="102" width="240" height="66" fill="var(--box-bg)" stroke="var(--edu)" stroke-width="1"></rect>
-          <text x="72" y="126" font-size="14.5" font-weight="600">若林敬子</text>
-          <text x="72" y="146" font-size="12" fill="var(--ink-2)">『学校統廃合の社会学的研究』</text>
-          <text x="72" y="162" font-size="11.5" fill="var(--ink-3)">教育社会学の古典</text>
-        </g>
-        <g>
-          <rect x="56" y="182" width="240" height="66" fill="var(--box-bg)" stroke="var(--edu)" stroke-width="1"></rect>
-          <text x="72" y="206" font-size="14.5" font-weight="600">葉養正明</text>
-          <text x="72" y="226" font-size="12" fill="var(--ink-2)">学区・学校配置研究</text>
-          <text x="72" y="242" font-size="11.5" fill="var(--ink-3)">2009・2010・2012</text>
-        </g>
-        <g>
-          <rect x="436" y="128" width="250" height="86" fill="var(--edu-fill)" stroke="var(--edu)" stroke-width="1"></rect>
-          <text x="452" y="152" font-size="14.5" font-weight="600">青木栄一ほか 2016</text>
-          <text x="452" y="172" font-size="12" fill="var(--ink-2)">統廃合の規定要因</text>
-          <text x="452" y="189" font-size="12" fill="var(--ink-2)">全国市区パネル・固定効果</text>
-          <text x="452" y="206" font-size="11.5" fill="var(--ink-3)">被引用 7（Google Scholar）</text>
-        </g>
+<section>
+<div class="prose">
+<h2><span class="num">01</span>系統は6本ある</h2>
+<p>同じ「学校が閉じる」現象を扱いながら、起点も引用先も異なる系統が並走している。前の版で3本に見えていたのは、社会学側の参考文献を取れていなかったため。</p>
+</div>
+<div class="lineages">
+<div class="lineage l-edu"><h3>教育社会学・統廃合研究</h3><div class="chain">若林敬子 1973 → 葉養正明・玉井康之 → 新藤慶 2013/2014 → 青木ほか 2016</div><p>最も古い層。若林の起点は1973年の「学区と村落社会」で、戦後町村合併期の学校統合を扱っている。新藤2013は2000年以降の研究動向レビューで、この分野の見取り図として使える。</p></div>
+<div class="lineage l-fin"><h3>財政・経済（合併研究）</h3><div class="chain">市町村合併の財政研究群 → 宮崎悟 2015/2016 → 鈴木 2024</div><p>合併の歳出削減効果や最適規模を論じてきた系統。鈴木2024はここと教育社会学系の両方を引く合流点。</p></div>
+<div class="lineage l-arch"><h3>建築計画・都市計画</h3><div class="chain">斎尾 2008 → 県別の悉皆調査群（北海道・山口・徳島）→ 野澤・恒川 → 坂本・茅田西野・小野西野 2024</div><p>建物と跡地を扱う系統。斎尾以降、県単位で数え上げる研究が各地に積み上がった。ただし若林も葉養も引いておらず、教育社会学の蓄積を素通りしている。</p></div>
+<div class="lineage l-intl"><h3>海外・農村人口減少</h3><div class="chain">Egelund &amp; Laustsen 2007・Slee &amp; Miller 2015 → 小野西野 2024</div><p>いずれも「廃校が地域を衰退させる」という通説を疑う実証。デンマークの研究は統廃合を人口減少の結果と位置づけている。</p></div>
+<div class="lineage l-comm"><h3>コミュニティ・社会教育</h3><div class="chain">金井・宮腰 2008 → 丹間康仁 2009–2015 → 権安理 2013・山本由美ほか 2022</div><p>住民と行政の関係、合意形成、協働を扱う。丹間の研究には校名と校歌の変更を論点化したものがあり、閉校の象徴的側面に踏み込んでいる数少ない先行例。</p></div>
+<div class="lineage l-mem"><h3>記憶・喪失・語り</h3><div class="chain">Nora『記憶の場』・Davis → 浜日出夫 2000・堀川三郎 2021 → 水野 2026</div><p>記憶研究の理論を土台に、閉校記念誌と若者の語りから喪失を読む系統。都市計画・建築の論文には一度も現れない。</p></div>
+</div>
+</section>
 
-        <!-- lane B -->
-        <g>
-          <rect x="56" y="306" width="240" height="80" fill="var(--box-bg)" stroke="var(--fin)" stroke-width="1"></rect>
-          <text x="72" y="330" font-size="14.5" font-weight="600">市町村合併の財政研究群</text>
-          <text x="72" y="350" font-size="12" fill="var(--ink-2)">西川 2002・林 2002</text>
-          <text x="72" y="367" font-size="12" fill="var(--ink-2)">宮崎毅・山下耕治ほか</text>
-        </g>
-        <g>
-          <rect x="436" y="308" width="250" height="72" fill="var(--fin-fill)" stroke="var(--fin)" stroke-width="1"></rect>
-          <text x="452" y="332" font-size="14.5" font-weight="600">宮崎悟 2015 / 2016</text>
-          <text x="452" y="352" font-size="12" fill="var(--ink-2)">合併と公立小学校の統廃合</text>
-          <text x="452" y="369" font-size="11.5" fill="var(--ink-3)">国立教育政策研究所紀要</text>
-        </g>
-        <g>
-          <rect x="856" y="232" width="350" height="92" fill="var(--box-bg)" stroke="var(--fin)" stroke-width="1.6"></rect>
-          <text x="872" y="256" font-size="15" font-weight="600">鈴木宏幸 2024</text>
-          <text x="872" y="276" font-size="12" fill="var(--ink-2)">合併規模が学校統廃合に与えた影響</text>
-          <text x="872" y="293" font-size="11.5" fill="var(--ink-3)">地域活性研究 21 ／ 参考文献 19件</text>
-          <text x="872" y="312" font-size="12" font-weight="600" fill="var(--fin)">教育行政系＋財政系の合流点</text>
-        </g>
+<section>
+<div class="prose">
+<h2><span class="num">02</span>共通祖先は2つ</h2>
+<p>複数の最先端が揃って引く結節点。どちらも悉皆で数えて整理した研究である点が共通する。</p>
+</div>
+<div class="ancestors">
+<div class="ancestor"><div class="who">斎尾直子 2008</div><div class="cite">公立小中学校の統廃合プロセスと廃校舎利活用に関する研究<br>― 茨城県過去30年間全廃校事例<br>日本建築学会計画系論文集 73(627)</div><p>坂本と小野・西野の両方が引用。茨城県の悉皆調査で、地理的にも手法的にも（悉皆 × プロセス × 跡地）直系の祖先にあたる。</p></div>
+<div class="ancestor"><div class="who">野澤英希・恒川和久ほか</div><div class="cite">東海4県の廃校 423校<br>発生要因 2020／再利用用途・利用状況 2021<br>日本建築学会計画系論文集</div><p>坂本（都市計画）と鈴木（地域活性・財政）という異分野2本の両方が引用。悉皆型の事例整理が分野を越えて引かれる実例そのもの。</p></div>
+</div>
+<div class="caveat"><strong>事例整理は引用されるか。</strong>答えは条件付きでイエス。引かれているのは面白い事例の紹介ではなく、県や地方を単位に悉皆で数えて類型化したもの。悉皆か定義がなければ引用のラインには届かない。</div>
+</section>
 
-        <!-- lane C -->
-        <g>
-          <rect x="56" y="468" width="240" height="100" fill="var(--star-fill)" stroke="var(--arch)" stroke-width="1.8"></rect>
-          <text x="72" y="492" font-size="14.5" font-weight="600">斎尾直子 2008 ★</text>
-          <text x="72" y="512" font-size="12" fill="var(--ink-2)">統廃合プロセスと廃校舎利活用</text>
-          <text x="72" y="529" font-size="12" fill="var(--ink-2)">茨城県 30年・全廃校の悉皆</text>
-          <text x="72" y="548" font-size="11.5" fill="var(--ink-3)">建築学会計画系 73(627)</text>
-        </g>
-        <g>
-          <rect x="436" y="462" width="250" height="108" fill="var(--star-fill)" stroke="var(--arch)" stroke-width="1.8"></rect>
-          <text x="452" y="486" font-size="14.5" font-weight="600">野澤英希・恒川和久ほか ★</text>
-          <text x="452" y="506" font-size="12" fill="var(--ink-2)">2020 / 2021・東海4県の廃校</text>
-          <text x="452" y="523" font-size="12" fill="var(--ink-2)">発生要因／再利用用途／</text>
-          <text x="452" y="540" font-size="12" fill="var(--ink-2)">利用状況の3部作</text>
-          <text x="452" y="558" font-size="11.5" fill="var(--ink-3)">建築学会計画系</text>
-        </g>
-        <g>
-          <rect x="856" y="414" width="350" height="86" fill="var(--arch-fill)" stroke="var(--arch)" stroke-width="1.6"></rect>
-          <text x="872" y="438" font-size="15" font-weight="600">坂本淳 2024</text>
-          <text x="872" y="458" font-size="12" fill="var(--ink-2)">廃校の活用状況 × 空間指標の要因分析</text>
-          <text x="872" y="475" font-size="11.5" fill="var(--ink-3)">都市計画論文集 59(3) ／ 参考文献 16件</text>
-          <text x="872" y="493" font-size="11.5" fill="var(--ink-3)">現在の標準文献リストを兼ねる</text>
-        </g>
-        <g>
-          <rect x="856" y="512" width="350" height="72" fill="var(--box-bg)" stroke="var(--arch)" stroke-width="1"></rect>
-          <text x="872" y="536" font-size="14.5" font-weight="600">茅田大輝・西野辰哉 2024</text>
-          <text x="872" y="556" font-size="12" fill="var(--ink-2)">立地特性による利活用可能性判別式</text>
-          <text x="872" y="573" font-size="11.5" fill="var(--ink-3)">建築学会計画系 89(815)</text>
-        </g>
-        <g>
-          <rect x="856" y="596" width="350" height="86" fill="var(--arch-fill)" stroke="var(--arch)" stroke-width="1.6"></rect>
-          <text x="872" y="620" font-size="15" font-weight="600">小野楓佳・西野辰哉 2024</text>
-          <text x="872" y="640" font-size="12" fill="var(--ink-2)">統廃合後の人口動態への中長期影響</text>
-          <text x="872" y="657" font-size="11.5" fill="var(--ink-3)">建築学会計画系 89(826) ／ 参考文献 30件</text>
-          <text x="872" y="675" font-size="11.5" fill="var(--gap)">若林・葉養ともに引用なし</text>
-        </g>
+<section>
+<div class="prose">
+<h2><span class="num">03</span>空白の正体は、研究の不在ではなく橋の不在</h2>
+<p>前の版では「閉校の儀礼・記憶を扱う研究はほぼない」と読んだが、社会学側の参考文献を取ったところ、記憶と語りの系統は確かに存在していた。訂正する。</p>
+<p>足りないのは研究ではなく、分野をまたぐ引用である。建築計画・都市計画の系統からコミュニティ・記憶の2レーンへ入る矢印は、31ノードのうち1本もない。跡地をどう使うかを論じる側と、閉校が人に何を残すかを論じる側が、互いを読まないまま並走している。</p>
+</div>
+<div class="caveat key"><strong>丹間康仁 2012 が近い。</strong>「学校統廃合に伴う校名と校歌の変更をめぐる論点 ― 茨城県大子町の統合事例」。閉校の象徴的な部分を正面から扱った数少ない研究で、事例地も茨城。著者は現在、筑波大学人間系の准教授。</div>
+</section>
 
-        <!-- lane D -->
-        <g>
-          <rect x="856" y="736" width="350" height="86" fill="var(--gap-fill)" stroke="var(--gap)" stroke-width="1" stroke-dasharray="4 3"></rect>
-          <text x="872" y="760" font-size="14.5" font-weight="600">水野遼太郎</text>
-          <text x="872" y="780" font-size="12" fill="var(--ink-2)">閉校記念誌と過疎地域の若者の語り</text>
-          <text x="872" y="797" font-size="11.5" fill="var(--ink-3)">フォーラム現代社会学 ／ 書誌要確認</text>
-          <text x="872" y="815" font-size="11.5" fill="var(--gap)">引用元は未取得・別系統の可能性</text>
-        </g>
-        <text x="56" y="762" font-size="12.5" fill="var(--ink-2)">この帯（閉校の儀礼・記憶・喪失）には祖先も中間層もほぼ存在しない。</text>
-        <text x="56" y="784" font-size="12.5" fill="var(--ink-2)">解体という物理的な終わりを扱う実証研究も同様に見当たらない。</text>
-        <text x="56" y="806" font-size="12.5" fill="var(--gap)">＝ 空白そのものが、みおくりの立ち位置になる領域。</text>
-      </svg>
-    </div>
-    <div class="legend">
-      <span><i class="swatch"></i>引用している（矢の先が引用元）</span>
-      <span><i class="swatch dash"></i>系統をまたぐ引用</span>
-      <span><i>★</i>共通祖先（複数の最先端が引く結節点）</span>
-    </div>
-  </section>
+<section>
+<div class="prose">
+<h2><span class="num">04</span>読む順番</h2>
+<p>系譜の上流から下り、最後に橋の架かっていない側へ渡る順。</p>
+</div>
+<ol class="reading">
+<li><span><span class="t">斎尾直子 2008</span><span class="n">共通祖先かつ茨城の悉皆調査。手法も対象地も最も近い。</span></span></li>
+<li><span><span class="t">野澤・恒川シリーズ</span><span class="n">悉皆型の様式見本。発生と活用の両面をどう数えたかを見る。</span></span></li>
+<li><span><span class="t">坂本淳 2024</span><span class="n">最先端の要因分析。参考文献16件が現在の標準文献リストを兼ねる。</span></span></li>
+<li><span><span class="t">新藤慶 2013</span><span class="n">2000年以降の研究動向レビュー。社会学側の地図を一気に把握できる。</span></span></li>
+<li><span><span class="t">丹間康仁 2012・2015</span><span class="n">合意形成と、校名・校歌という象徴の扱い。橋を架けるならここから。</span></span></li>
+<li><span><span class="t">水野遼太郎 2026</span><span class="n">閉校記念誌を一次資料に使う方法。記憶研究の理論との接続を見る。</span></span></li>
+</ol>
+</section>
 
-  <section>
-    <div class="prose">
-      <h2><span class="num">01</span>系統は3本あり、参照先が分かれている</h2>
-      <p>4本の参考文献リストを突き合わせると、廃校研究は起点の違う3系統に分かれている。同じ「学校が閉じる」現象を扱いながら、引く相手がほとんど重ならない。</p>
-    </div>
-    <div class="lineages">
-      <div class="lineage l-edu">
-        <h3>教育行政・社会学系</h3>
-        <div class="chain">若林敬子・葉養正明 → 青木ほか 2016 → 鈴木 2024</div>
-        <p>統廃合の意思決定と政策を扱う。青木は若林を財政効率化の文脈で、葉養を学区・実施過程の文脈で引いている。</p>
-      </div>
-      <div class="lineage l-fin">
-        <h3>財政・経済系</h3>
-        <div class="chain">市町村合併の財政研究群 → 宮崎悟 2015/2016 → 鈴木 2024</div>
-        <p>合併の歳出削減効果や最適規模を論じてきた系統。鈴木2024はここと教育行政系の両方を引く合流点になっている。</p>
-      </div>
-      <div class="lineage l-arch">
-        <h3>建築計画系</h3>
-        <div class="chain">斎尾 2008 → 野澤・恒川 2020/2021 → 坂本 2024・茅田西野 2024・小野西野 2024</div>
-        <p>建物と跡地を扱う系統。小野・西野2024は若林も葉養も引いておらず、教育社会学の古典を素通りしている。分野の分断は引用リストのレベルで実在する。</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="prose">
-      <h2><span class="num">02</span>共通祖先は2つ</h2>
-      <p>複数の最先端論文が揃って引いている結節点が2つある。どちらも「悉皆で数えて整理した」研究である点が共通している。</p>
-    </div>
-    <div class="ancestors">
-      <div class="ancestor">
-        <div class="who">斎尾直子 2008</div>
-        <div class="cite">公立小中学校の統廃合プロセスと廃校舎利活用に関する研究<br>― 茨城県過去30年間全廃校事例<br>日本建築学会計画系論文集 73(627)</div>
-        <p>坂本と小野・西野の両方が引用。前回のリサーチで「著者不明・本文未確認」だったプロセス研究の正体がこれ。茨城県の悉皆調査であり、地理的にも手法的にも（悉皆 × プロセス × 跡地）みおくりの直系の祖先にあたる。</p>
-      </div>
-      <div class="ancestor">
-        <div class="who">野澤英希・恒川和久ほか</div>
-        <div class="cite">東海4県（愛知・岐阜・三重・静岡）の廃校<br>発生要因 2020／再利用用途 2021／利用状況 2021<br>日本建築学会計画系論文集</div>
-        <p>坂本（都市計画）と鈴木（地域活性・財政）という異分野2本の両方が引用。悉皆型の事例整理が、分野を越えて後続に引かれる実例そのもの。</p>
-      </div>
-    </div>
-    <div class="caveat">
-      <strong>前回の宿題への答え。</strong>「事例整理でも引用されるか」は、野澤・恒川シリーズが実例になっている。ただし条件付きで、引かれているのは面白い事例の紹介ではなく、4県を悉皆で数えて類型化したもの。悉皆か定義がなければ引用のラインには届かない、という見立ては実データでも裏づけられた。
-    </div>
-  </section>
-
-  <section>
-    <div class="prose">
-      <h2><span class="num">03</span>読む順番</h2>
-      <p>系譜の上流から下り、最後に空白へ渡る順。</p>
-    </div>
-    <ol class="reading">
-      <li><span><span class="t">斎尾直子 2008</span><span class="n">共通祖先かつ茨城の悉皆調査。営業先とも手法とも重なるため最優先。</span></span></li>
-      <li><span><span class="t">野澤・恒川シリーズ 3本</span><span class="n">悉皆型の様式見本。発生と活用の両面をどう数えたかを見る。</span></span></li>
-      <li><span><span class="t">坂本淳 2024</span><span class="n">最先端の要因分析。この16件の参考文献リストが、現在の標準文献リストを兼ねる。</span></span></li>
-      <li><span><span class="t">若林敬子</span><span class="n">社会学側へ渡るなら。建築計画系だけで書くなら後回しでよい。</span></span></li>
-      <li><span><span class="t">水野遼太郎</span><span class="n">儀礼・記憶という空白側の、現時点で唯一の橋頭堡。</span></span></li>
-    </ol>
-  </section>
-
-  <section>
-    <div class="prose">
-      <h2><span class="num">04</span>取得状況</h2>
-      <p>マップは推測ではなく、各論文のPDF本文から実際に取り出した参考文献リストに基づく。</p>
-    </div>
-    <table class="status">
-      <thead>
-        <tr><th>論文</th><th>参考文献</th><th>被引用</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>坂本 2024</td><td class="n">全16件 取得</td><td class="n">0（J-STAGE）</td></tr>
-        <tr><td>鈴木 2024</td><td class="n">全19件 取得</td><td class="n">0（J-STAGE）</td></tr>
-        <tr><td>小野・西野 2024</td><td class="n">全30件 取得</td><td class="n">未表示</td></tr>
-        <tr><td>青木ほか 2016</td><td class="n">脚注引用のみ・書誌不完全</td><td class="n">7（Scholar）</td></tr>
-      </tbody>
-    </table>
-    <div class="caveat">
-      <strong>注意。</strong>2024年組の被引用0は「引かれない研究」という意味ではなく、刊行が新しく蓄積が始まっていないだけ。また斎尾2008から野澤・恒川への矢印は未検証のため引いていない。書誌情報は引用前に原典で確認すること。
-    </div>
-  </section>
-
+<section>
+<div class="prose">
+<h2><span class="num">05</span>取得状況</h2>
+<p>矢印は推測ではなく、各論文のPDF本文から実際に取り出した参考文献リストに基づく。</p>
+</div>
+<table class="status">
+<thead><tr><th>論文</th><th>参考文献</th><th>被引用</th></tr></thead>
+<tbody>
+<tr><td>坂本 2024</td><td class="n">全16件 取得</td><td class="n">0（J-STAGE）</td></tr>
+<tr><td>鈴木 2024</td><td class="n">全19件 取得</td><td class="n">0（J-STAGE）</td></tr>
+<tr><td>小野・西野 2024</td><td class="n">全30件 取得</td><td class="n">未表示</td></tr>
+<tr><td>新藤 2013 / 2014</td><td class="n">全45件／全13件 取得</td><td class="n">未確認</td></tr>
+<tr><td>水野 2026</td><td class="n">全31件 取得</td><td class="n">未確認</td></tr>
+<tr><td>青木ほか 2016</td><td class="n">脚注引用のみ・書誌不完全</td><td class="n">7（Scholar）</td></tr>
+<tr><td>丹間 2016（学会発表要旨）</td><td class="n">脚注7件 取得</td><td class="n">未確認</td></tr>
+</tbody>
+</table>
+<div class="caveat"><strong>注意。</strong>2024年以降の被引用0は、刊行が新しく蓄積が始まっていないだけ。時任・西野2018と舟瀬2021は書誌が未確定のため破線で示した。斎尾2008から野澤・恒川への矢印は未検証のため引いていない。書誌情報は引用前に原典で確認すること。</div>
+</section>
 </div>
 </body>
 </html>
